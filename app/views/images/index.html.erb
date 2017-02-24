@@ -1,3 +1,4 @@
+<h1>Check out the photos</h1>
 <% @images.each do |image| %>
   <%= link_to (image_tag image.image.url(:medium), class: 'image'), image %>
 <% end %>

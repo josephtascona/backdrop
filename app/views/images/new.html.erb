@@ -1,5 +1,5 @@
 <h1>Add Some Photos</h1>
-<%= form_for @image, html: { multipart: true } do |f| %>\
+<%= form_for @image, html: { multipart: true } do |f| %>
   <div>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -13,4 +13,7 @@
     <%= f.text_area :description %>
   </div>
   <%= f.hidden_field :user_id, value: current_user.id %>
+  <div>
+    <%= f.submit "Submit" %>
+  </div>
 <% end %>
