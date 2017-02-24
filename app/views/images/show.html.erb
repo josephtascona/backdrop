@@ -1,2 +1,36 @@
-<h1>Images#show</h1>
-<p>Find me in app/views/images/show.html.erb</p>
+<h1><%= @image.title %></h1>
+<div>
+  <%= image_tag @image.image.url(:medium) %>
+</div>
+<p>
+  Posted <%= time_ago_in_words(@image.created_at) %> ago
+</p>
+<% if !@image.user.first_name.empty? || !@image.user.last_name.empty? %>
+  <p>
+    Shared by <%= @image.user.first_name %> <%= @image.user.last_name %>
+  </p>
+<% else %>
+  <p>
+    Anonymous Author
+  </p>
+<% end %>
+<% if !@image.description.empty? %>
+  <div>
+    Author's Thoughts: <br />
+    <p>
+      <%= @image.description %>
+    </p>
+  </div>
+<% else %>
+  <p>
+    No description
+  </p>
+<% end %>
+<% if @image.user_id == current_user.id %>
+  <p>
+    <%= link_to 'Edit', edit_image_path %> | <%= link_to "Delete", image_path, method: :delete, data: { confirm: "Are you sure?" } %>
+  </p>
+<% end %>
+<p>
+  <%= link_to "Back", root_path %>
+</p>

@@ -33,6 +33,9 @@ class ImagesController < ApplicationController
   end
 
   def destroy
+    if @image.destroy
+      redirect_to root_path
+    end
   end
 
   private
@@ -42,6 +45,6 @@ class ImagesController < ApplicationController
   end
 
   def image_params
-    params.require(:image).permit(:title, :description, :image)
+    params.require(:image).permit(:title, :description, :image, :user_id)
   end
 end
