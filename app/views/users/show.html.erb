@@ -1,5 +1,44 @@
 <h1>Your Profile</h1>
-<p><%= @user.email %></p>
+
+<% if @user.avatar_file_name.nil? %>
+  <img src="<%= asset_path("anonymous.jpg") %>" />
+<% else %>
+  <p>
+    <%= image_tag @user.avatar.url(:medium) %>
+  </p>
+<% end %>
+
+<% if !@user.first_name.empty? || !@user.last_name.empty? %>
+  <p>
+    Name: <%= full_name %>
+  </p>
+<% else %>
+  <p>
+    Anonymous
+  </p>
+<% end %>
+
+<p>
+  Email: <%= @user.email %>
+</p>
+
+<% if !@user.city.empty? && !@user.state.empty? %>
+  <p>
+    Location: <%= location %>
+  </p>
+<% elsif !@user.city.empty? %>
+  <p>
+    City: <%= @user.city %>
+  </p>
+<% elsif !@user.state.empty? %>
+  <p>
+    Province/State: <%= @user.state %>
+  </p>
+<% else %>
+  <p>
+    Not from this world!
+  </p>
+<% end %>
 
 <%= link_to "Settings", edit_user_registration_path %>
 

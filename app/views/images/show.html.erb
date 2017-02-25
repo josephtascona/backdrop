@@ -7,7 +7,7 @@
 </p>
 <% if !@image.user.first_name.empty? || !@image.user.last_name.empty? %>
   <p>
-    Shared by <%= @image.user.first_name %> <%= @image.user.last_name %>
+    Shared by <%= full_name1 %>
   </p>
 <% else %>
   <p>
