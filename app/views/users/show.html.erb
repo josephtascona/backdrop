@@ -22,15 +22,15 @@
   Email: <%= @user.email %>
 </p>
 
-<% if !@user.city.empty? && !@user.state.empty? %>
+<% if @user.city.nil? && @user.state.nil? %>
   <p>
     Location: <%= location %>
   </p>
-<% elsif !@user.city.empty? %>
+<% elsif @user.city.nil? %>
   <p>
     City: <%= @user.city %>
   </p>
-<% elsif !@user.state.empty? %>
+<% elsif @user.state.nil? %>
   <p>
     Province/State: <%= @user.state %>
   </p>
@@ -41,7 +41,3 @@
 <% end %>
 
 <%= link_to "Settings", edit_user_registration_path %>
-
-<p>
-  <%= link_to "Back", :back %>
-</p>

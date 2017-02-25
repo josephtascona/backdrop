@@ -3,6 +3,8 @@
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
         <%= link_to (image_tag image.image.url(:medium), class: 'image'), image %>
+        <i class="fa fa-thumbs-o-up"><%= image.get_likes.size %></i>
+        <i class="fa fa-thumbs-o-down"><%= image.get_dislikes.size %></i>
       </div>
     </div>
   <% end %>
