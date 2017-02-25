@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root 'images#index'
   resources :images do
+    member do
+      get "like", to: "images#upvote"
+      get "dislike", to: "images#downvote"
+    end
     collection do
       get 'search'
     end

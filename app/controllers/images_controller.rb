@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_image, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :authenticate_user!, except: [:index]
 
   def search
@@ -45,6 +45,16 @@ class ImagesController < ApplicationController
     if @image.destroy
       redirect_to root_path
     end
+  end
+
+  def upvote
+    @image.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @image.downvote_by current_user
+    redirect_to :back
   end
 
   private

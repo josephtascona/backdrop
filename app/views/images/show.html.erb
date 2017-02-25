@@ -26,6 +26,12 @@
     No description
   </p>
 <% end %>
+<%= link_to like_image_path(@image), method: :get, class: "data" do %>
+  <i class="fa fa-thumbs-o-up"><%= pluralize(@image.get_upvotes.size, "Like") %></i>
+<% end %>
+<%= link_to dislike_image_path(@image), method: :get, class: "data" do %>
+  <i class="fa fa-thumbs-o-down"><%= pluralize(@image.get_downvotes.size, "Dislike") %></i>
+<% end %>
 <% if @image.user_id == current_user.id %>
   <p>
     <%= link_to 'Edit', edit_image_path %> | <%= link_to "Delete", image_path, method: :delete, data: { confirm: "Are you sure?" } %>

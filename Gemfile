@@ -57,3 +57,7 @@ gem 'devise', '~> 4.2'
 gem 'paperclip', '~> 5.1'
 
 gem 'searchkick', '~> 2.1', '>= 2.1.1'
+
+gem 'acts_as_votable', '~> 0.10.0'
+
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
