@@ -4,7 +4,7 @@
 </div>
 
 <div class="row">
-  <% @images.each do |image| %>
+  <% @images.order("id DESC").limit(50).each do |image| %>
     <div class="col-sm-12 col-md-12">
       <div class="thumbnail">
         <%= link_to (image_tag image.image.url(:small), class: 'image'), image %>

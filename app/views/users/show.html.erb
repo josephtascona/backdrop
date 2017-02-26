@@ -1,11 +1,9 @@
 <h1>Your Profile</h1>
 
-<% if @user.avatar_file_name.nil? %>
-  <img class="avatar1" src="<%= asset_path("anonymous.jpg") %>" />
+<% if !@user.avatar_file_name.nil? %>
+  <p><%= image_tag @user.avatar.url(:medium), class: "avatar" %></p>
 <% else %>
-  <p>
-    <%= image_tag @user.avatar.url(:medium), class: "avatar" %>
-  </p>
+  <img class="avatar1" src="<%= asset_path("anonymous.jpg") %>" />
 <% end %>
 
 <% if !@user.first_name.empty? || !@user.last_name.empty? %>
@@ -22,15 +20,15 @@
   Email: <%= @user.email %>
 </p>
 
-<% if !@user.city.nil? && !@user.state.nil? %>
+<% if !@user.city.to_s.empty? && !@user.state.to_s.empty? %>
   <p>
     Location: <%= location %>
   </p>
-<% elsif !@user.city.nil? %>
+<% elsif !@user.city.to_s.empty? %>
   <p>
     City: <%= @user.city %>
   </p>
-<% elsif !@user.state.nil? %>
+<% elsif !@user.state.to_s.empty? %>
   <p>
     Province/State: <%= @user.state %>
   </p>
@@ -40,4 +38,12 @@
   </p>
 <% end %>
 
-<%= link_to "Settings", edit_user_registration_path %>
+<% if @user.id == current_user.id %>
+  <%= link_to "Settings", edit_user_registration_path %>
+<% end %>
+
+<% @user.images.each do |image| %>
+  <%= link_to (image_tag image.image.url(:medium), class: "image"), image %>
+  <i class="fa fa-thumbs-o-up"><%= image.get_likes.size %></i>
+  <i class="fa fa-thumbs-o-down"><%= image.get_dislikes.size %></i>
+<% end %>
