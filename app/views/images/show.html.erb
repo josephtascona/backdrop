@@ -6,9 +6,9 @@
           <%= image_tag @image.image.url(:small) %>
           <p>Posted <%= time_ago_in_words(@image.created_at) %> ago</p>
           <% if !@image.user.first_name.empty? || !@image.user.last_name.empty? %>
-            <p>Shared by <%= link_to full_name1, @image.user %></p>
+            <p><%= link_to full_name1, @image.user %></p>
           <% else %>
-            <p>Anonymous Author</p>
+            <p><%= link_to "Anonymous Author", @image.user %></p>
           <% end %>
           <%= link_to like_image_path(@image), method: :get, class: "data" do %>
             <i class="fa fa-thumbs-o-up"><%= pluralize(@image.get_upvotes.size, "Like") %></i>

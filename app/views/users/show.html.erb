@@ -42,8 +42,18 @@
   <%= link_to "Settings", edit_user_registration_path %>
 <% end %>
 
-<% @user.images.each do |image| %>
+<% @user.images.order("id DESC").each do |image| %>
   <%= link_to (image_tag image.image.url(:medium), class: "image"), image %>
-  <i class="fa fa-thumbs-o-up"><%= image.get_likes.size %></i>
-  <i class="fa fa-thumbs-o-down"><%= image.get_dislikes.size %></i>
+  <%= link_to like_image_path(image), method: :get, class: "data" do %>
+    <i class="fa fa-thumbs-o-up"><%= pluralize(image.get_upvotes.size, "Like") %></i>
+  <% end %>
+  <%= link_to dislike_image_path(image), method: :get, class: "data" do %>
+    <i class="fa fa-thumbs-o-down"><%= pluralize(image.get_downvotes.size, "Dislike") %></i>
+  <% end %>
+  <% if !image.user.first_name.empty? || !image.user.last_name.empty? %>
+    <p><%= link_to full_name, image.user %></p>
+  <% else %>
+    <p><%= link_to "Anonymous Author", image.user %></p>
+  <% end %>
+  <p>Posted <%= time_ago_in_words(image.created_at) %> ago</p>
 <% end %>

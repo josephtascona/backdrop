@@ -6,11 +6,19 @@
 <div class="row">
   <% @images.order("id DESC").limit(50).each do |image| %>
     <div class="col-sm-12 col-md-12">
-      <div class="thumbnail">
-        <%= link_to (image_tag image.image.url(:small), class: 'image'), image %>
-        <i class="fa fa-thumbs-o-up"><%= image.get_likes.size %></i>
-        <i class="fa fa-thumbs-o-down"><%= image.get_dislikes.size %></i>
-      </div>
+      <%= link_to (image_tag image.image.url(:small), class: 'image'), image %>
+      <%= link_to like_image_path(image), method: :get, class: "data" do %>
+        <i class="fa fa-thumbs-o-up"><%= pluralize(image.get_upvotes.size, "Like") %></i>
+      <% end %>
+      <%= link_to dislike_image_path(image), method: :get, class: "data" do %>
+        <i class="fa fa-thumbs-o-down"><%= pluralize(image.get_downvotes.size, "Dislike") %></i>
+      <% end %>
+      <% if !image.user.first_name.empty? || !image.user.last_name.empty? %>
+        <p><%= link_to image.user.first_name + ' ' + image.user.last_name, image.user %></p>
+      <% else %>
+        <p><%= link_to "Anonymous Author", image.user %></p>
+      <% end %>
+      <p>Posted <%= time_ago_in_words(image.created_at) %> ago</p>
     </div>
   <% end %>
 </div>
