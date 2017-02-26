@@ -1,59 +1,35 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="thumbnail">
-          <%= image_tag @image.image.url(:small) %>
-          <p>Posted <%= time_ago_in_words(@image.created_at) %> ago</p>
-          <% if !@image.user.avatar_file_name.nil? %>
-            <%= link_to @image.user do %>
-              <p><%= image_tag @image.user.avatar.url(:small), class: "avatar" %></p>
-            <% end %>
-          <% else %>
-            <%= link_to @image.user do %>
-              <img class="avatar2" src="<%= asset_path("anonymous.jpg") %>" />
-            <% end %>
-          <% end %>
-          <% if !@image.user.first_name.empty? || !@image.user.last_name.empty? %>
-            <p><%= link_to full_name1, @image.user %></p>
-          <% else %>
-            <p><%= link_to "Anonymous Author", @image.user %></p>
-          <% end %>
-          <%= link_to like_image_path(@image), method: :get, class: "data" do %>
-            <i class="fa fa-thumbs-o-up"><%= pluralize(@image.get_upvotes.size, "Like") %></i>
-          <% end %>
-          <%= link_to dislike_image_path(@image), method: :get, class: "data" do %>
-            <i class="fa fa-thumbs-o-down"><%= pluralize(@image.get_downvotes.size, "Dislike") %></i>
-          <% end %>
-        </div>
-        <div class="table-responsive">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td><strong>Title:</strong></td>
-                <td><%= @image.title %></td>
-              </tr>
-              <% if !@image.description.empty? %>
-              <tr>
-                <td><strong>Author's Thoughts:</strong></td>
-                <td><%= @image.description %></td>
-              </tr>
-              <% else %>
-              <tr>
-                <td><strong>Author's Thoughts:</strong></td>
-                <td>No description</td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<%= image_tag @image.image.url(:small), class: "image" %>
+<p>Posted <%= time_ago_in_words(@image.created_at) %> ago</p>
+<% if !@image.user.avatar_file_name.nil? %>
+  <%= link_to @image.user do %>
+    <%= image_tag @image.user.avatar.url(:small), class: "avatar" %></p>
+  <% end %>
+<% else %>
+  <%= link_to @image.user do %>
+    <img class="avatar2" src="<%= asset_path("anonymous.jpg") %>" />
+  <% end %>
+<% end %>
+<% if !@image.user.first_name.empty? || !@image.user.last_name.empty? %>
+  <%= link_to full_name1, @image.user %>
+<% else %>
+  <%= link_to "Anonymous Author", @image.user %>
+<% end %>
+<%= link_to like_image_path(@image), method: :get, class: "data" do %>
+  <i class="fa fa-thumbs-o-up"><%= pluralize(@image.get_upvotes.size, "Like") %></i>
+<% end %>
+<%= link_to dislike_image_path(@image), method: :get, class: "data" do %>
+  <i class="fa fa-thumbs-o-down"><%= pluralize(@image.get_downvotes.size, "Dislike") %></i>
+<% end %>
+<strong>Title:</strong>
+<%= @image.title %>
+<% if !@image.description.empty? %>
+  <strong>Author's Thoughts:</strong>
+  <%= @image.description %>
+<% else %>
+  <strong>Author's Thoughts:</strong>
+  <p>No description</p>
+<% end %>
 
 <% if @image.user_id == current_user.id %>
-  <p>
-    <%= link_to 'Edit', edit_image_path %> | <%= link_to "Delete", image_path, method: :delete, data: { confirm: "Are you sure?" } %>
-  </p>
+  <%= link_to 'Edit', edit_image_path %> | <%= link_to "Delete", image_path, method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>

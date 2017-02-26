@@ -1,28 +1,24 @@
-<div class="row">
-  <% @images.each do |image| %>
-    <div class="col-sm-12 col-md-12">
-      <%= link_to (image_tag image.image.url(:small), class: 'image'), image %>
-      <%= link_to like_image_path(image), method: :get, class: "data" do %>
-        <i class="fa fa-thumbs-o-up"><%= pluralize(image.get_upvotes.size, "Like") %></i>
+<% @images.each do |image| %>
+    <%= link_to (image_tag image.image.url(:small), class: 'image'), image %>
+    <%= link_to like_image_path(image), method: :get, class: "data" do %>
+      <i class="fa fa-thumbs-o-up"><%= pluralize(image.get_upvotes.size, "Like") %></i>
+    <% end %>
+    <%= link_to dislike_image_path(image), method: :get, class: "data" do %>
+      <i class="fa fa-thumbs-o-down"><%= pluralize(image.get_downvotes.size, "Dislike") %></i>
+    <% end %>
+    <% if !image.user.avatar_file_name.nil? %>
+      <%= link_to image.user do %>
+        <p><%= image_tag image.user.avatar.url(:small), class: "avatar" %></p>
       <% end %>
-      <%= link_to dislike_image_path(image), method: :get, class: "data" do %>
-        <i class="fa fa-thumbs-o-down"><%= pluralize(image.get_downvotes.size, "Dislike") %></i>
+    <% else %>
+      <%= link_to image.user do %>
+        <img class="avatar2" src="<%= asset_path("anonymous.jpg") %>" />
       <% end %>
-      <% if !image.user.avatar_file_name.nil? %>
-        <%= link_to image.user do %>
-          <p><%= image_tag image.user.avatar.url(:small), class: "avatar" %></p>
-        <% end %>
-      <% else %>
-        <%= link_to image.user do %>
-          <img class="avatar2" src="<%= asset_path("anonymous.jpg") %>" />
-        <% end %>
-      <% end %>
-      <% if !image.user.first_name.empty? || !image.user.last_name.empty? %>
-        <p><%= link_to image.user.first_name + ' ' + image.user.last_name, image.user %></p>
-      <% else %>
-        <p><%= link_to "Anonymous Author", image.user %></p>
-      <% end %>
-      <p>Posted <%= time_ago_in_words(image.created_at) %> ago</p>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+    <% if !image.user.first_name.empty? || !image.user.last_name.empty? %>
+      <p><%= link_to image.user.first_name + ' ' + image.user.last_name, image.user %></p>
+    <% else %>
+      <p><%= link_to "Anonymous Author", image.user %></p>
+    <% end %>
+    <p>Posted <%= time_ago_in_words(image.created_at) %> ago</p>
+<% end %>

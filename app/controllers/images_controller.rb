@@ -6,7 +6,7 @@ class ImagesController < ApplicationController
     if params[:search].present?
       @images = Image.search(params[:search])
     else
-      @images = Image.all
+      @images = Image.order("id DESC").limit(50)
     end
   end
 

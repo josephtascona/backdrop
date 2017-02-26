@@ -39,7 +39,7 @@
 <% end %>
 
 <% @user.images.order("id DESC").each do |image| %>
-  <%= link_to (image_tag image.image.url(:medium), class: "image"), image %>
+  <%= link_to (image_tag image.image.url(:medium), class: "image1"), image %>
   <%= link_to like_image_path(image), method: :get, class: "data" do %>
     <i class="fa fa-thumbs-o-up"><%= pluralize(image.get_upvotes.size, "Like") %></i>
   <% end %>
