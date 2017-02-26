@@ -49,6 +49,22 @@ input#search {
   width: 700px;
 }
 
+.alert-danger {
+  background-color: #a94442;
+  border-color: #a94442;
+  color: #fff;
+}
+
+.alert-info {
+  background-color: #286090;
+  border-color: #286090;
+  color: #fff;
+}
+
+.close {
+  color: #fff;
+}
+
 @media (max-width: 1200px) {
   input#search {
     width: 500px;
