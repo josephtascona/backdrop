@@ -13,6 +13,15 @@
       <%= link_to dislike_image_path(image), method: :get, class: "data" do %>
         <i class="fa fa-thumbs-o-down"><%= pluralize(image.get_downvotes.size, "Dislike") %></i>
       <% end %>
+      <% if !image.user.avatar_file_name.nil? %>
+        <%= link_to image.user do %>
+          <p><%= image_tag image.user.avatar.url(:small), class: "avatar" %></p>
+        <% end %>
+      <% else %>
+        <%= link_to image.user do %>
+          <img class="avatar2" src="<%= asset_path("anonymous.jpg") %>" />
+        <% end %>
+      <% end %>
       <% if !image.user.first_name.empty? || !image.user.last_name.empty? %>
         <p><%= link_to image.user.first_name + ' ' + image.user.last_name, image.user %></p>
       <% else %>
