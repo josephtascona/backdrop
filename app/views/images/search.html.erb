@@ -1,8 +1,8 @@
 <div class="row">
   <% @images.each do |image| %>
-    <div class="col-sm-6 col-md-3">
+    <div class="col-sm-12 col-md-12">
       <div class="thumbnail">
-        <%= link_to (image_tag image.image.url(:medium), class: 'image'), image %>
+        <%= link_to (image_tag image.image.url(:small), class: 'image'), image %>
         <i class="fa fa-thumbs-o-up"><%= image.get_likes.size %></i>
         <i class="fa fa-thumbs-o-down"><%= image.get_dislikes.size %></i>
       </div>

@@ -1,10 +1,10 @@
 <h1>Your Profile</h1>
 
 <% if @user.avatar_file_name.nil? %>
-  <img src="<%= asset_path("anonymous.jpg") %>" />
+  <img class="avatar1" src="<%= asset_path("anonymous.jpg") %>" />
 <% else %>
   <p>
-    <%= image_tag @user.avatar.url(:medium) %>
+    <%= image_tag @user.avatar.url(:medium), class: "avatar" %>
   </p>
 <% end %>
 
@@ -22,15 +22,15 @@
   Email: <%= @user.email %>
 </p>
 
-<% if @user.city.nil? && @user.state.nil? %>
+<% if !@user.city.nil? && !@user.state.nil? %>
   <p>
     Location: <%= location %>
   </p>
-<% elsif @user.city.nil? %>
+<% elsif !@user.city.nil? %>
   <p>
     City: <%= @user.city %>
   </p>
-<% elsif @user.state.nil? %>
+<% elsif !@user.state.nil? %>
   <p>
     Province/State: <%= @user.state %>
   </p>

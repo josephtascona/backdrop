@@ -1,13 +1,10 @@
 <%= form_for @image, html: { multipart: true } do |f| %>
   <% if image.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
+      <a href="#" data-dismiss="alert" class="close">×</a>
       <% image.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <p><%= message %></p>
       <% end %>
-      </ul>
     </div>
   <% end %>
   <div>

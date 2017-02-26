@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :images
-  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }
+  has_attached_file :avatar, styles: { medium: "128x128#", small: "32x32#" }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  validates :email, uniqueness: true
 end

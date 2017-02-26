@@ -1,6 +1,16 @@
-<h1>Check out the photos</h1>
-<% @images.each do |image| %>
-  <%= link_to (image_tag image.image.url(:medium), class: 'image'), image %>
-  <i class="fa fa-thumbs-o-up"><%= image.get_likes.size %></i>
-  <i class="fa fa-thumbs-o-down"><%= image.get_dislikes.size %></i>
-<% end %>
+<div class="jumbotron">
+  <h1>Add Your Favorite Design's and Photo's</h1>
+  <p>Hashtag hoodie mumblecore selfies. Authentic keffiyeh leggings Kickstarter, narwhal jean shorts XOXO Vice Austin cardigan. Organic drinking vinegar freegan pickled.</p>
+</div>
+
+<div class="row">
+  <% @images.each do |image| %>
+    <div class="col-sm-12 col-md-12">
+      <div class="thumbnail">
+        <%= link_to (image_tag image.image.url(:small), class: 'image'), image %>
+        <i class="fa fa-thumbs-o-up"><%= image.get_likes.size %></i>
+        <i class="fa fa-thumbs-o-down"><%= image.get_dislikes.size %></i>
+      </div>
+    </div>
+  <% end %>
+</div>
