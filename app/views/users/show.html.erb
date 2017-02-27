@@ -1,64 +1,70 @@
-<h1>Your Profile</h1>
-
 <% if !@user.avatar_file_name.nil? %>
-  <p><%= image_tag @user.avatar.url(:medium), class: "avatar" %></p>
+  <p class="center"><%= image_tag @user.avatar.url(:medium), class: "avatar" %></p>
 <% else %>
-  <img class="avatar1" src="<%= asset_path("anonymous.jpg") %>" />
+  <p class="center"><img class="avatar1" src="<%= asset_path("anonymous.jpg") %>" /></p>
 <% end %>
 
+
 <% if !@user.first_name.empty? || !@user.last_name.empty? %>
-  <p>
-    Name: <%= full_name %>
+  <p class="name">
+    <%= full_name %>
   </p>
 <% else %>
-  <p>
+  <p class="name">
     Anonymous
   </p>
 <% end %>
+<div class="user-show-menu">
+  <% if !@user.city.to_s.empty? && !@user.state.to_s.empty? %>
+    <p class="user-location">
+      Location: <%= location %>
+    </p>
+  <% elsif !@user.city.to_s.empty? %>
+    <p class="user-location">
+      City: <%= @user.city %>
+    </p>
+  <% elsif !@user.state.to_s.empty? %>
+    <p class="user-location">
+      Province/State: <%= @user.state %>
+    </p>
+  <% else %>
+    <p class="user-location">
+      Not from this world!
+    </p>
+  <% end %>
+</div>
 
-<p>
-  Email: <%= @user.email %>
-</p>
-
-<% if !@user.city.to_s.empty? && !@user.state.to_s.empty? %>
-  <p>
-    Location: <%= location %>
-  </p>
-<% elsif !@user.city.to_s.empty? %>
-  <p>
-    City: <%= @user.city %>
-  </p>
-<% elsif !@user.state.to_s.empty? %>
-  <p>
-    Province/State: <%= @user.state %>
-  </p>
-<% else %>
-  <p>
-    Not from this world!
-  </p>
-<% end %>
+<div class="jumbotron user-jumbotron">
+  <div class="container">
+    <p><%= @user.about_me %></p>
+  </div>
+</div>
 
 <% @user.images.order("id DESC").each do |image| %>
   <%= link_to (image_tag image.image.url(:medium), class: "image1"), image %>
-  <%= link_to like_image_path(image), method: :get, class: "data" do %>
-    <i class="fa fa-thumbs-o-up"><%= pluralize(image.get_upvotes.size, "Like") %></i>
-  <% end %>
-  <%= link_to dislike_image_path(image), method: :get, class: "data" do %>
-    <i class="fa fa-thumbs-o-down"><%= pluralize(image.get_downvotes.size, "Dislike") %></i>
-  <% end %>
-  <% if !image.user.avatar_file_name.nil? %>
-    <%= link_to image.user do %>
-      <p><%= image_tag image.user.avatar.url(:small), class: "avatar" %></p>
+  <div class="index-margin">
+    <%= link_to like_image_path(image), method: :get, class: "data" do %>
+      <i class="fa fa-thumbs-o-up"><%= pluralize(image.get_upvotes.size, "Like") %></i>
     <% end %>
-  <% else %>
-    <%= link_to image.user do %>
-      <img class="avatar2" src="<%= asset_path("anonymous.jpg") %>" />
+    <%= link_to dislike_image_path(image), method: :get, class: "data" do %>
+      <i class="fa fa-thumbs-o-down"><%= pluralize(image.get_downvotes.size, "Dislike") %></i>
     <% end %>
-  <% end %>
-  <% if !image.user.first_name.empty? || !image.user.last_name.empty? %>
-    <p><%= link_to full_name, image.user %></p>
-  <% else %>
-    <p><%= link_to "Anonymous Author", image.user %></p>
-  <% end %>
-  <p>Posted <%= time_ago_in_words(image.created_at) %> ago</p>
+    <div class="middle-index">
+      <% if !image.user.avatar_file_name.nil? %>
+        <%= link_to image.user do %>
+          <%= image_tag image.user.avatar.url(:small), class: "avatar" %>
+        <% end %>
+      <% else %>
+        <%= link_to image.user do %>
+          <img class="avatar2" src="<%= asset_path("anonymous.jpg") %>" />
+        <% end %>
+      <% end %>
+      <% if !image.user.first_name.empty? || !image.user.last_name.empty? %>
+        <%= link_to full_name, image.user %>
+      <% else %>
+        <%= link_to "Anonymous Author", image.user %>
+      <% end %>
+    </div>
+    <p class="posted">Posted <%= time_ago_in_words(image.created_at) %> ago</p>
+  </div>
 <% end %>

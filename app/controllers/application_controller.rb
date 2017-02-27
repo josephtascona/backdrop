@@ -13,5 +13,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:avatar])
     devise_parameter_sanitizer.permit(:account_update, keys: [:city])
     devise_parameter_sanitizer.permit(:account_update, keys: [:state])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:about_me])
   end
 end
