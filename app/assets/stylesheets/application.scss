@@ -24,6 +24,26 @@
    p { margin: 22px 0 20px 0; }
 }
 
+li.active2:hover {
+  background-color: #008542;
+  a:hover { color: white; }
+}
+
+li.active3:hover {
+  background-color: #286090;
+  a:hover { color: white; }
+}
+
+li.active4:hover {
+  background-color: #7E0B80;
+  a:hover { color: white; }
+}
+
+li.active5:hover {
+  background-color: #a94442;
+  a:hover { color: white; }
+}
+
 .container.main {
    min-height: 824px;
    margin-top: 79px;
