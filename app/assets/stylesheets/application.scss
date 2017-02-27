@@ -58,16 +58,18 @@ li.active5:hover {
 }
 
 button.btn.btn-default {
-  border-radius: 75%;
-  background-color: #286090;
-}
-
-span.glyphicon.glyphicon-search {
-  color: white;
+  border-radius: 15px;
+  z-index: 1000;
+  border-right: none;
+  background-color: white;
 }
 
 input#search {
   width: 700px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-left: none;
+  background-color: white;
 }
 
 .alert-danger {
