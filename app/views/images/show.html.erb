@@ -1,4 +1,4 @@
-<h1 class="show-page-title"><%= @image.title %></h1>
+<h1 class="show-page-title disappear1 get-smaller"><%= @image.title %></h1>
 <%= image_tag @image.image.url(:small), class: "image" %>
 <div class="index-margin">
   <%= link_to like_image_path(@image), method: :get, class: "data hover" do %>
@@ -14,25 +14,25 @@
       <% end %>
     <% else %>
       <%= link_to @image.user, class: "hover" do %>
-        <img class="avatar2" src="<%= asset_path("anonymous.jpg") %>" />
+        <img class="avatar" src="<%= asset_path("anonymous.jpg") %>" />
       <% end %>
     <% end %>
     <% if !@image.user.first_name.empty? || !@image.user.last_name.empty? %>
-      <%= link_to full_name1, @image.user %>
+      <%= link_to full_name1, @image.user, class: "disappear" %>
     <% else %>
-      <%= link_to "Anonymous Author", @image.user %>
+      <%= link_to "Anonymous Author", @image.user, class: "disappear" %>
     <% end %>
   </div>
-  <p>Posted <%= time_ago_in_words(@image.created_at) %> ago</p>
+  <p class="posted">Posted <%= time_ago_in_words(@image.created_at) %> ago</p>
 </div>
-<div class="jumbotron application-jumbotron margin-b">
+<div class="jumbotron application-jumbotron margin-b disappear1">
   <div class="container">
     <% if !@image.description.empty? %>
-      <h1>Author's Thoughts:</h1>
-      <p><%= @image.description %></p>
+      <h1 class="get-smaller">Author's Thoughts:</h1>
+      <p class="get-small"><%= @image.description %></p>
     <% else %>
-      <h1>Author's Thoughts:</h1>
-      <p>No description</p>
+      <h1 class="get-smaller">Author's Thoughts:</h1>
+      <p class="get-small">No description</p>
     <% end %>
   </div>
 </div>
