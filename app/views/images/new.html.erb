@@ -1,5 +1,29 @@
 <div class="form-center">
   <h1>Add Some Photos</h1>
-
-  <%= render 'form', image: @image %>
+  <%= form_for @image, html: { multipart: true } do |f| %>
+    <% if @image.errors.any? %>
+      <div class="alert alert-danger">
+        <a href="#" data-dismiss="alert" class="close">×</a>
+        <% @image.errors.full_messages.each do |message| %>
+            <p><%= message %></p>
+        <% end %>
+      </div>
+    <% end %>
+    <div>
+      <%= f.label :title %><br />
+      <%= f.text_field :title, class: 'input' %>
+    </div>
+    <div>
+      <%= f.label :image %><br />
+      <%= f.file_field :image %>
+    </div>
+    <div>
+      <%= f.label :description %><br />
+      <%= f.text_area :description, class: 'textarea' %>
+    </div>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <div>
+      <%= f.submit "Submit", class: "submit" %>
+    </div>
+  <% end %>
 </div>
