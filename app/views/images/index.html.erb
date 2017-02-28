@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div class="jumbotron application-jumbotron">
   <div class="container">
     <h1>Add Your Favorite Design's and Photo's</h1>
     <p>Here at Backdrop you can add any photo or design you want, whether you want them to be rated or just for other people to see. There's no judgement here so add whatever you want, as long as it's apropriate.</p>
@@ -8,19 +8,19 @@
 <% @images.order("id DESC").limit(50).each do |image| %>
     <%= link_to (image_tag image.image.url(:small), class: 'image'), image %>
     <div class="index-margin">
-      <%= link_to like_image_path(image), method: :get, class: "data" do %>
+      <%= link_to like_image_path(image), method: :get, class: "data hover" do %>
         <i class="fa fa-thumbs-o-up"><%= pluralize(image.get_upvotes.size, "Like") %></i>
       <% end %>
-      <%= link_to dislike_image_path(image), method: :get, class: "data" do %>
+      <%= link_to dislike_image_path(image), method: :get, class: "data hover" do %>
         <i class="fa fa-thumbs-o-down"><%= pluralize(image.get_downvotes.size, "Dislike") %></i>
       <% end %>
       <div class="middle-index">
         <% if !image.user.avatar_file_name.nil? %>
-          <%= link_to image.user do %>
-          <%= image_tag image.user.avatar.url(:small), class: "avatar" %>
+          <%= link_to image.user, class: "hover" do %>
+            <%= image_tag image.user.avatar.url(:small), class: "avatar" %>
           <% end %>
         <% else %>
-          <%= link_to image.user do %>
+          <%= link_to image.user, class: "hover" do %>
             <img class="avatar2" src="<%= asset_path("anonymous.jpg") %>" />
           <% end %>
         <% end %>
