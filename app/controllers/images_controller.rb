@@ -35,7 +35,7 @@ class ImagesController < ApplicationController
 
   def update
     if @image.update(image_params)
-      redirect_to root_path
+      redirect_to image_path
     else
       render :edit
     end
