@@ -49,12 +49,20 @@ class ImagesController < ApplicationController
 
   def upvote
     @image.upvote_by current_user
-    redirect_to :back
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { render json: { count: @image.get_upvotes.size } }
+    end
   end
 
   def downvote
     @image.downvote_by current_user
-    redirect_to :back
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { render json: { count: @image.get_downvotes.size } }
+    end
   end
 
   private

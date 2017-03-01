@@ -15,3 +15,34 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+// $(function() {
+//   $('a.upvote-image').on('click', function(event) {
+//     event.preventDefault();
+//
+//     var $this = $(this);
+//
+//     $.ajax({
+//       url: $this.attr('href'),
+//       method: $this.data('method'),
+//       dataType: 'json'
+//     }).done(function(returnData) {
+//       $this.find('i').text(returnData.count + ' Like');
+//     });
+//     return false;
+//   });
+//
+//   $('a.downvote-image').on('click', function(event) {
+//     event.preventDefault();
+//
+//     var $this = $(this);
+//
+//     $.ajax({
+//       url: $this.attr('href'),
+//       method: $this.data('method'),
+//       dataType: 'json'
+//     }).done(function(returnData) {
+//       $this.find('i').text(returnData.count + ' Dislike');
+//     });
+//     return false;
+//   });
+// });

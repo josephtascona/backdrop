@@ -70,8 +70,30 @@ span.glyphicon.glyphicon-search {
   color: #999999;
 }
 
-.hover:hover {
+.data.hover:hover {
   text-decoration: none;
+}
+
+.data.hover {
+  text-decoration: none;
+}
+
+.data.hover:visited {
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.data.hover:hover {
+  text-decoration: none;
+}
+
+.data.hover {
+  text-decoration: none;
+}
+
+.data.hover:visited {
+  text-decoration: none;
+  border-bottom: none;
 }
 
 .alert-danger {

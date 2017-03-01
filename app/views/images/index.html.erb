@@ -5,13 +5,14 @@
     <p><%= link_to "Add a photo", new_image_path, class: "btn btn-primary btn-lg" %></p>
   </div>
 </div>
+
 <% @images.order("id DESC").limit(50).each do |image| %>
     <%= link_to (image_tag image.image.url(:small), class: 'image'), image %>
     <div class="index-margin">
-      <%= link_to like_image_path(image), method: :get, class: "data hover" do %>
+      <%= link_to like_image_path(image), method: :get, class: "upvote-image data hover stop", data: {imageId: "#{image.id}"} do %>
         <i class="fa fa-thumbs-o-up"><%= pluralize(image.get_upvotes.size, "Like") %></i>
       <% end %>
-      <%= link_to dislike_image_path(image), method: :get, class: "data hover" do %>
+      <%= link_to dislike_image_path(image), method: :get, class: "downvote-image data hover stop1", data: {imageId: "#{image.id}"} do %>
         <i class="fa fa-thumbs-o-down"><%= pluralize(image.get_downvotes.size, "Dislike") %></i>
       <% end %>
       <div class="middle-index">
