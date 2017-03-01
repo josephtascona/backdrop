@@ -37,7 +37,8 @@
   </div>
 </div>
 
-
-<% if @image.user_id == current_user.id %>
-  <p class="edit-delete"><%= link_to 'Edit', edit_image_path %> | <%= link_to "Delete", image_path, method: :delete, data: { confirm: "Are you sure?" } %></p>
+<% if user_signed_in? %>
+  <% if @image.user_id == current_user.id %>
+    <p class="edit-delete"><%= link_to 'Edit', edit_image_path %> | <%= link_to "Delete", image_path, method: :delete, data: { confirm: "Are you sure?" } %></p>
+  <% end %>
 <% end %>

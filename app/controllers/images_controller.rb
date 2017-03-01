@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
-  before_action :authenticate_user!, except: [:index, :search]
+  before_action :authenticate_user!, except: [:index, :show, :search]
 
   def search
     if params[:search].present?
