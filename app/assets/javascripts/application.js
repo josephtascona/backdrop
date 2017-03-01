@@ -26,7 +26,8 @@
 //       method: $this.data('method'),
 //       dataType: 'json'
 //     }).done(function(returnData) {
-//       $this.find('i').text(returnData.count + ' Like');
+//       $this.find('i').text(returnData.count);
+//       $('a.downvote-image').find('i').text() - 1;
 //     });
 //     return false;
 //   });
@@ -41,7 +42,8 @@
 //       method: $this.data('method'),
 //       dataType: 'json'
 //     }).done(function(returnData) {
-//       $this.find('i').text(returnData.count + ' Dislike');
+//       $this.find('i').text(returnData.count);
+//       $('a.upvote-image').find('i').text() - 1;
 //     });
 //     return false;
 //   });
