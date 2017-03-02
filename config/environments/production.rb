@@ -1,3 +1,5 @@
+Rails.application.routes.default_url_options[:host] = 'young-earth-69152.herokuapp.com'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -58,8 +60,6 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.default_url_options = { :host => 'young-earth-69152.herokuapp.com' }
-
-  Rails.application.routes.default_url_options[:host] = 'young-earth-69152.herokuapp.com'
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
