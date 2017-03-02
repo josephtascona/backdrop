@@ -2,10 +2,10 @@
 <%= image_tag @image.image.url(:small), class: "image" %>
 <div class="index-margin">
   <%= link_to like_image_path(@image), method: :get, class: "data hover" do %>
-    <i class="fa fa-thumbs-o-up"><%= pluralize(@image.get_upvotes.size, "Like") %></i>
+    <i class="glyphicon glyphicon-thumbs-up"><%= pluralize(@image.get_upvotes.size, "Like") %></i>
   <% end %>
   <%= link_to dislike_image_path(@image), method: :get, class: "data hover" do %>
-    <i class="fa fa-thumbs-o-down"><%= pluralize(@image.get_downvotes.size, "Dislike") %></i>
+    <i class="glyphicon glyphicon-thumbs-down"><%= pluralize(@image.get_downvotes.size, "Dislike") %></i>
   <% end %>
   <div class="middle-index">
     <% if !@image.user.avatar_file_name.nil? %>

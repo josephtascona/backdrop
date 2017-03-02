@@ -1,5 +1,7 @@
 class Image < ApplicationRecord
-  searchkick
+  def self.search(search)
+    where("title ILIKE ?", "%#{search}%")
+  end
   acts_as_votable
   belongs_to :user
   validates_presence_of :image, :title

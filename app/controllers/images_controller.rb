@@ -2,16 +2,16 @@ class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :authenticate_user!, except: [:index, :show, :search]
 
-  def search
-    if params[:search].present?
-      @images = Image.search(params[:search])
-    else
-      @images = Image.order("id DESC").limit(50)
-    end
-  end
-
   def index
     @images = Image.all
+  end
+
+  def search
+    if params[:search]
+      @images = Image.search(params[:search]).order("created_at DESC")
+    else
+      @images = Image.all.order("created_at DESC")
+    end
   end
 
   def show
